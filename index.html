@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#b91c32">
+  <title>قطرة أمل | لوحة تحليل البيانات</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">♥</div>
+        <div>
+          <h2>قطرة أمل</h2>
+          <span>حياة طفل</span>
+        </div>
+      </div>
+
+      <div class="side-label">القائمة الرئيسية</div>
+
+      <nav>
+        <a href="#dashboard" class="nav-link active">
+          <span>▦</span> لوحة التحكم
+        </a>
+        <a href="#statistics" class="nav-link">
+          <span>▥</span> التحليلات والإحصائيات
+        </a>
+        <a href="#records" class="nav-link">
+          <span>▤</span> السجلات التجريبية
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">♥</div>
+          <strong>كل قطرة تصنع أملاً</strong>
+          <p>معاً لدعم الأطفال وتحسين جودة حياتهم.</p>
+        </div>
+        <span class="demo-label">وضع البيانات التجريبية</span>
+      </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+
+      <header class="topbar">
+        <div class="topbar-right">
+          <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة">☰</button>
+          <div>
+            <h1>لوحة تحليل البيانات</h1>
+            <p>مرحباً بك في لوحة قطرة أمل</p>
+          </div>
+        </div>
+
+        <div class="topbar-left">
+          <span class="live-dot"></span>
+          <span>بيانات تجريبية</span>
+          <div class="avatar">ق</div>
+        </div>
+      </header>
+
+      <section class="welcome">
+        <div>
+          <span class="eyebrow">لوحة المعلومات الرئيسية</span>
+          <h2>الأرقام تصنع فرقاً، والأمل يجمعنا ❤️</h2>
+          <p>تابع المؤشرات والإحصائيات الخاصة بالمبادرة من مكان واحد.</p>
+        </div>
+        <div class="welcome-icon">♥</div>
+      </section>
+
+      <section class="filters">
+        <div class="filter-title">
+          <span>⌕</span>
+          <strong>تصفية البيانات</strong>
+        </div>
+
+        <select id="monthFilter">
+          <option value="all">كل الشهور</option>
+          <option value="1">يناير</option>
+          <option value="2">فبراير</option>
+          <option value="3">مارس</option>
+          <option value="4">أبريل</option>
+          <option value="5">مايو</option>
+          <option value="6">يونيو</option>
+          <option value="7">يوليو</option>
+          <option value="8">أغسطس</option>
+          <option value="9">سبتمبر</option>
+          <option value="10">أكتوبر</option>
+          <option value="11">نوفمبر</option>
+          <option value="12">ديسمبر</option>
+        </select>
+
+        <select id="bloodFilter">
+          <option value="all">كل الفصائل</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+
+        <button class="reset-btn" id="resetFilters">إعادة تعيين</button>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>المتبرعون البالغون</span>
+            <div class="stat-icon red">♥</div>
+          </div>
+          <h2 id="donorsCount">0</h2>
+          <p>عدد السجلات التجريبية للمتبرعين</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>الأطفال المستفيدون</span>
+            <div class="stat-icon pink">♧</div>
+          </div>
+          <h2 id="childrenCount">0</h2>
+          <p>عدد الأطفال المستفيدين المسجلين تجريبياً</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>إجمالي الطلبات</span>
+            <div class="stat-icon orange">▤</div>
+          </div>
+          <h2 id="requestsCount">0</h2>
+          <p>إجمالي الطلبات التجريبية</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>الطلبات المكتملة</span>
+            <div class="stat-icon green">✓</div>
+          </div>
+          <h2 id="completedCount">0</h2>
+          <p>الطلبات التي تم إكمالها في النموذج</p>
+        </article>
+      </section>
+
+      <section class="charts-grid" id="statistics">
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div>
+              <h3>النشاط الشهري</h3>
+              <p>توزيع السجلات على مدار العام</p>
+            </div>
+            <span class="chart-tag">شهرياً</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="monthlyChart"></canvas>
+          </div>
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div>
+              <h3>توزيع فصائل الدم</h3>
+              <p>عدد السجلات حسب الفصيلة</p>
+            </div>
+            <span class="chart-tag">الفصائل</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="bloodChart"></canvas>
+          </div>
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div>
+              <h3>حالة الطلبات</h3>
+              <p>نظرة عامة على حالات الطلبات</p>
+            </div>
+            <span class="chart-tag">الحالة</span>
+          </div>
+          <div class="chart-container doughnut-container">
+            <canvas id="statusChart"></canvas>
+          </div>
+        </article>
+
+        <article class="panel insight-panel">
+          <div class="panel-heading">
+            <div>
+              <h3>ملخص التحليل</h3>
+              <p>مؤشرات البيانات الحالية</p>
+            </div>
+            <span class="insight-icon">✦</span>
+          </div>
+
+          <div class="insight-item">
+            <span class="insight-bullet red-bullet"></span>
+            <div>
+              <strong>معدل إكمال الطلبات</strong>
+              <p id="completionRate">0%</p>
+            </div>
+          </div>
+
+          <div class="insight-item">
+            <span class="insight-bullet green-bullet"></span>
+            <div>
+              <strong>الطلبات قيد المراجعة</strong>
+              <p id="pendingCount">0</p>
+            </div>
+          </div>
+
+          <div class="insight-item">
+            <span class="insight-bullet orange-bullet"></span>
+            <div>
+              <strong>الطلبات المرفوضة</strong>
+              <p id="rejectedCount">0</p>
+            </div>
+          </div>
+
+          <div class="insight-note">
+            هذه المؤشرات توضيحية ومبنية على بيانات افتراضية، وليست بيانات طبية فعلية.
+          </div>
+        </article>
+      </section>
+
+      <section class="panel records-panel" id="records">
+        <div class="records-heading">
+          <div>
+            <h3>السجلات التجريبية</h3>
+            <p>إدارة ومراجعة بيانات لوحة التحكم</p>
+          </div>
+
+          <div class="record-actions">
+            <button class="export-btn" id="exportBtn">↓ تصدير CSV</button>
+            <button class="add-btn" id="addBtn">＋ إضافة سجل</button>
+          </div>
+        </div>
+
+        <div class="table-tools">
+          <input type="search" id="searchInput" placeholder="ابحث في السجلات...">
+          <span id="recordsCount">0 سجل</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>رقم السجل</th>
+                <th>النوع</th>
+                <th>فصيلة الدم</th>
+                <th>التاريخ</th>
+                <th>الحالة</th>
+                <th>الإجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="recordsBody"></tbody>
+          </table>
+        </div>
+
+        <div class="empty-state" id="emptyState" hidden>
+          لا توجد سجلات مطابقة لعملية البحث.
+        </div>
+      </section>
+
+      <footer>
+        <p>© 2026 قطرة أمل | حياة طفل</p>
+        <p>مشروع تعليمي ببيانات تجريبية فقط</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- نافذة إضافة وتعديل سجل -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-heading">
+        <div>
+          <h3 id="modalTitle">إضافة سجل جديد</h3>
+          <p>أدخل بيانات تجريبية فقط</p>
+        </div>
+        <button class="close-btn" id="closeModal">×</button>
+      </div>
+
+      <form id="recordForm">
+        <input type="hidden" id="recordId">
+
+        <label for="recordType">نوع السجل</label>
+        <select id="recordType" required>
+          <option value="متبرع بالغ">متبرع بالغ</option>
+          <option value="طفل مستفيد">طفل مستفيد</option>
+        </select>
+
+        <label for="recordBlood">فصيلة الدم</label>
+        <select id="recordBlood" required>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+
+        <label for="recordDate">التاريخ</label>
+        <input type="date" id="recordDate" required>
+
+        <label for="recordStatus">الحالة</label>
+        <select id="recordStatus" required>
+          <option value="مكتمل">مكتمل</option>
+          <option value="قيد المراجعة">قيد المراجعة</option>
+          <option value="مرفوض">مرفوض</option>
+        </select>
+
+        <div class="modal-actions">
+          <button type="button" class="cancel-btn" id="cancelModal">إلغاء</button>
+          <button type="submit" class="add-btn">حفظ السجل</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
